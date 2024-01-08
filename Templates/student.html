@@ -1,0 +1,33 @@
+{% extends "navbar.html" %}
+{% block content %}
+    <div class="container mt-4">
+        <form action="{% url 'registration' %}" method='post'>
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="sname">Name:</label>
+                <input type="text" class="form-control" id="sname" name='sname' placeholder='Enter Name'>
+            </div>
+            <div class="form-group">
+                <label for="smail">Email:</label>
+                <input type="email" class="form-control" id="smail" name='smail' placeholder='Enter Email id'>
+            </div>
+            <div class="form-group">
+                <label for="sage">Age:</label>
+                <input type="number" class="form-control" id="sage" name='sage' placeholder='Enter Age'>
+            </div>
+            <div class="form-group">
+                <label for="sdate">Date:</label>
+                <input type="date" class="form-control" id="sdate" name='sdate'>
+            </div>
+            <div class="form-group">
+                <label for="sselect">Select Course:</label>
+                <select class="form-control" id="sselect" name="sselect" style='width:100%'>
+                    {% for i in crs %}
+                        <option value="{{i.id}}">{{ i.course_name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Submit</button>
+        </form>
+    </div>
+{% endblock %}
